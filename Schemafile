@@ -1,0 +1,14 @@
+# frozen_string_literal: true
+
+create_table 'users', comment: 'ユーザー' do |t|
+  t.string :username, null: false, comment: 'ユーザー名'
+  t.string :first_name, null: false, comment: '姓'
+  t.string :last_name, null: false, comment: '名'
+  t.string :phone_number, null: false, comment: '電話番号'
+  t.string :email, null: false, comment: 'メールアドレス'
+
+  t.timestamps null: false
+
+  t.index :username, unique: true
+end
+

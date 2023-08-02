@@ -1,0 +1,67 @@
+<div>
+  <div>
+    <h2>
+      User information
+    </h2>
+
+    <div>
+      <%= link_to account_path do %>
+        <div>
+          <div>
+            Account Balance
+          </div>
+          <div>
+            <span>
+              ¥
+            </span>
+            <span>
+              <%= number_to_currency(current_user.account.balance, locale: :jp) %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <% if current_user.wallet.present? %>
+      <div>
+        <%= link_to wallet_path do %>
+          <div>
+            <div>
+              Wallet Balance
+            </div>
+            <div>
+              <span>
+                ₳
+              </span>
+              <span>
+                <%= number_to_currency(current_user.wallet.balance, locale: :jp) %>
+              </span>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= button_to 'Log out', logout_path, method: :delete %>
+    </div>
+
+    <%= form_with scope: :user, url: user_path do |form| %>
+      <div>
+        <div>
+          <%= form.text_field :first_name, readonly: true %>
+          <%= form.text_field :last_name, readonly: true %>
+        </div>
+        <%= form.text_field :username, readonly: true %>
+        <%= form.text_field :phone_number, readonly: true %>
+        <%= form.text_field :email, readonly: true %>
+      </div>
+    <% end %>
+
+  </div>
+</div>
+
+
+<div>
+
+</div>
