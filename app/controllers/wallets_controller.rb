@@ -13,6 +13,8 @@ class WalletsController < ApplicationController
 
   def create
     current_user.build_wallet.save!
+
+    # DID へ登録する Services を定義する
     services_json = {
                      "services": [
                        {
@@ -23,17 +25,21 @@ class WalletsController < ApplicationController
                      ]
                    }.to_json
 
+    # DID Service へ DID の作成依頼を送る
     response = Net::HTTP.post(
       URI('http://localhost:3001/did/create'),
       services_json,
       'Content-Type' => 'application/json'
     )
     body = JSON.parse(response.body)
+
+    # 返答を受け取る
     did_long_form = body['did']
     signing_key = body['singingKey']
     recovery_key = body['recoveryKey']
     update_key = body['updateKey']
 
+    # DID 情報を保存する
     Did.create!(did_long_form:, signing_key:, recovery_key:, update_key:)
 
     redirect_to wallet_path
