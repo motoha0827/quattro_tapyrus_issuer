@@ -24,7 +24,7 @@ class UsersController < ApplicationController
                    }.to_json
 
     response = Net::HTTP.post(
-      URI('http://localhost:3001/did/create'),
+      URI("#{ENV['DID_SERVICE_URL']}/did/create"),
       services_json,
       'Content-Type' => 'application/json'
     )

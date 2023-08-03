@@ -17,7 +17,7 @@ class AuthorizationsController < ActionController::Base
     }.to_json
 
     response = Net::HTTP.post(
-      URI('http://localhost:3001/did/signature'),
+      URI("#{ENV['DID_SERVICE_URL']}/did/signature"),
       params_json,
       'Content-Type' => 'application/json'
     )
