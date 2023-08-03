@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <h2>
+      Deposit
+    </h2>
+
+    <%= form_with scope: :wallet, url: wallet_deposit_path do |form| %>
+      <div>
+        <%= form.number_field :amount, placeholder: "Amount", required: true %>
+
+        <%= form.submit "Deposit"%>
+      </div>
+    <% end %>
+
+  </div>
+</div>

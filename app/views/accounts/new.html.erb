@@ -1,0 +1,18 @@
+<h2>
+  Log in
+</h2>
+
+<%= form_with scope: :account, url: deposit_path do |form| %>
+  <div>
+    <%= form.number_field :amount, placeholder: "amount", required: true %>
+
+    <%= form.submit "deposit" %>
+
+    <div>
+      <p>
+        Don't have an account?
+        <%= link_to "Register", signup_path %>
+      </p>
+    </div>
+  </div>
+<% end %>

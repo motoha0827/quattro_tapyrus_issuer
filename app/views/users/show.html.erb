@@ -5,18 +5,13 @@
     </h2>
 
     <div>
-      <%= link_to account_path do %>
+      <%= link_to deposit_path do %>
         <div>
           <div>
             Account Balance
           </div>
           <div>
-            <span>
-              ¥
-            </span>
-            <span>
-              <%= number_to_currency(current_user.account.balance, locale: :jp) %>
-            </span>
+            <%= number_to_currency(current_user.account.balance) %>
           </div>
         </div>
       <% end %>
@@ -30,12 +25,7 @@
               Wallet Balance
             </div>
             <div>
-              <span>
-                ₳
-              </span>
-              <span>
-                <%= number_to_currency(current_user.wallet.balance, locale: :jp) %>
-              </span>
+              <%= number_to_currency(current_user.wallet.balance) %>
             </div>
           </div>
         <% end %>

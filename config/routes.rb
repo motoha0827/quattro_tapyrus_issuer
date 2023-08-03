@@ -10,11 +10,16 @@ Rails.application.routes.draw do
 
   resource :user, only: %i[show]
 
-  resource :account, only: %i[show] do
-    scope module: :accounts do
-      resource :deposit, only: %i[new create]
-      resource :withdrawal, only: %i[new create]
-      resource :transfer, only: %i[new create]
-    end
-  end
+  get 'deposit', to: 'accounts#new'
+  post 'deposit', to: 'accounts#deposit'
+
+  resource :wallet, only: %i[show new create]
+
+  get 'wallet/deposit', to: 'wallets#deposit_new'
+  post 'wallet/deposit', to: 'wallets#deposit'
+
+  get 'wallet/withdraw', to: 'wallets#withdraw_new'
+  post 'wallet/withdraw', to: 'wallets#withdraw'
+
+  post 'authorization', to: 'authorizations#index'
 end

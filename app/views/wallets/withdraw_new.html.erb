@@ -1,0 +1,16 @@
+<div>
+  <div>
+    <h2>
+      Withdrawal
+    </h2>
+
+    <%= form_with scope: :wallet, url: wallet_withdraw_path do |form| %>
+      <div>
+        <%= form.number_field :amount, placeholder: "Amount", required: true %>
+
+        <%= form.submit "Withdrawal"%>
+      </div>
+    <% end %>
+
+  </div>
+</div>
